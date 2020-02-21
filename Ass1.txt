@@ -1,0 +1,205 @@
+show databases
+
+create database BidvestBank;
+
+use BidvestBank;
+Database changed
+
+create table BankBranch(
+branch_name varchar(20) not null primary key,
+branch_city varchar(20) not null,
+assets int not null
+);
+
+create table Customer(
+customer_name varchar(20) not null primary key,
+customer_street varchar(40) not null,
+customer_city varchar(20) not null
+);
+
+create table CustomerAccount(
+account_number char(5) not null primary key,
+branch_name varchar(10),
+balance double
+);
+
+create table Loan(
+loan_number char(5) not null primary key,
+branch_name varchar(10) not null,
+amount double
+);
+
+create table Depositor(
+customer_name varchar(20) not null,
+account_number char(5) not null primary key
+);
+
+create table Borrower(
+customer_name varchar(20) not null,
+loan_number char(5) not null primary key
+);
+
+create table Employee(
+employee_name varchar(20) not null primary key,
+branch_name varchar(10) not null,
+salary double
+);
+
+Alter Table CustomerAccount Modify account_number char(6);
+
+insert into CustomerAccount values('A-5324', 'Newtown', 500);
+
+insert into CustomerAccount values('A-5624', 'Sunnyside', 400);
+
+insert into CustomerAccount values('A-7794', 'Midrand', 900);
+
+insert into CustomerAccount values('A-4467', 'Mabopane', 700);
+
+insert into CustomerAccount values('A-3546', 'Midrand', 750);
+
+Alter Table CustomerAccount Modify branch_name varchar(20);
+
+insert into CustomerAccount values('A-3453', 'universitas', 700);
+
+insert into CustomerAccount values('A-2542', 'Mamelodi', 350);
+
+insert into BankBranch values('Midrand', 'Johannesburg', 7100000);
+
+insert into BankBranch values('Newtown', 'Johannesburg', 9000000);
+
+insert into BankBranch values('Mabopane', 'Pretoria', 400000);
+
+insert into BankBranch values('Belgravia', 'Kimberly', 3700000);
+
+insert into BankBranch values('Sunnyside', 'Pretoria', 1700000);
+
+insert into BankBranch values('Amazimtoti', 'Durban', 300000);
+
+insert into BankBranch values('Universitas', 'Bloemfontein', 2100000);
+
+insert into BankBranch values('Mamelodi', 'Pretoria', 8000000);
+
+Alter table Depositor Modify account_number char(6);
+
+insert into Depositor values('Johnson', 'A-5624');
+
+insert into Depositor values('Johnson', 'A-7794');
+
+insert into Depositor values('Zwane', 'A-3546');
+
+insert into Depositor values('Lindsay', 'A-3453');
+
+insert into Depositor values('Smith', 'A-4467');
+
+insert into Depositor values('Dlamini', 'A-2542');
+
+insert into Loan values('L-11', 'Mamelodi', 900);
+
+insert into Loan values('L-14', 'Newtown', 1500);
+
+insert into Loan values('L-15', 'Sunnyside', 1500);
+
+insert into Loan values('L-16', 'Sunnyside', 1300);
+
+insert into Loan values('L-17', 'newtown', 1000);
+
+alter table Loan modify branch_name varchar(20);
+
+insert into Loan values('L-23', 'Universitas', 2000);
+
+insert into Loan values('L-93', 'Mabopane', 500);
+
+insert into Borrower values('Modise', 'L-16');
+
+insert into Borrower values('Jooste', 'L-93');
+
+insert into Borrower values('Johnson', 'L-15');
+
+insert into Borrower values('Jackson', 'L-14');
+
+insert into Borrower values('Zwane', 'L-17');
+
+insert into Borrower values('Smith', 'L-11');
+
+insert into Borrower values('Smith', 'L-23');
+
+insert into Borrower values('Williams', 'L-18');
+
+insert into Employee values('Modise', 'Sunnyside', 1500);
+
+insert into Employee values('Brown', 'Sunnyside', 1300);
+
+insert into Employee values('Gopal', 'Sunnyside', 5300);
+
+insert into Employee values('Johnson', 'Newtown', 1500);
+
+insert into Employee values('Loreena', 'Newtown', 1300);
+
+insert into Employee values('Peterson', 'Newtown', 2500);
+
+insert into Employee values('Rao', 'Austin', 1500);
+
+insert into Employee values('Sato', 'Austin', 1600);
+
+insert into Customer values('Modise', 'Spring', 'George');
+
+insert into Customer values('Brooks', 'Senator', 'johannesburg');
+
+insert into Customer values('Jooste', 'North', 'Kimberly');
+
+insert into Customer values('Lombard', 'Sand Hill', 'Nelspruit');
+
+mysql> insert into Customer values('Mokwena', 'Walnut', 'Port-Elizabeth');
+
+insert into Customer values('Johnson', 'Mmbatho', 'Mafikeng');
+
+insert into Customer values('Jimmy', 'Almal', 'Bloemfontein');
+
+insert into Customer values('Zwane', 'Main', 'Mafikeng');
+
+insert into Customer values('Lindsay', 'Park', 'George');
+
+insert into Customer values('Smith', 'North', 'Kimberly');
+
+insert into Customer values('Dlamini', 'Putnam', 'Port-Elizabeth');
+
+insert into Customer values('Williams', 'Nassau', 'Giyane');
+
+show tables;
+
+select * from BankBranch;
+
+select * from Customer;
+
+select * from CustomerAccount;
+
+select * from Loan;
+
+select * from Depositor;
+
+select * from Borrower;
+
+select * from Employee;
+
+select account_number from CustomerAccount where balance < 700;
+
+select * from CustomerAccount where balance < 700;
+
+select customer_name from Customer where customer_city = 'Johannesburg';
+
+select * from Employee where salary > 1500 and branch_name != 'Newtown';
+
+select AVG(salary) as 'avg_salary'from Employee;
+
+select MAX(Assets), branch_name From BankBranch;
+
+select employee_name from Employee where branch_name = 'Sunnyside';
+
+select * from Borrower;
+
+select account_number from CustomerAccount where balance > 900;
+
+select account_number, balance from CustomerAccount where branch_name = 'Newtown' and balance > 600;
+
+select branch_name, assets from BankBranch;
+
